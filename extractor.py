@@ -83,19 +83,6 @@ class Extractor():
             self.__verbose.append(f"Linear Layer : {linear_l}  --->\
  Weights shape : {linear_wts.shape}")
 
-    def reset(self):
-        """Resets all the variable"""
-
-        self.CNN_layers.clear()
-        self.Linear_layers.clear()
-        self.DS_layers.clear()
-        self.CNN_weights.clear()
-        self.Linear_weights.clear()
-        self.__verbose.clear()
-
-        self.__no_sq_layers = 0
-        self.__no_containers = 0
-
     def activate(self):
         """Activates the algorithm"""
 
