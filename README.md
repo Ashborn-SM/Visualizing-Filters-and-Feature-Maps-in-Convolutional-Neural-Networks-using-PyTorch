@@ -38,16 +38,15 @@ for i in range(len(model_children)):
                     model_weights.append(child.weight)
                     conv_layers.append(child)
 ```
-The above code is simple and self-explanatory but it is limited to pre-existing models like other resnet model resnet-18, 34, 101, 152. For a custom model things will be different ,lets say there is a Sequential layer inside another Sequential layer and if there is a CNN layer it will be unchecked.
+The above code is simple and self-explanatory but it is limited to pre-existing models like other resnet model resnet-18, 34, 101, 152. For a custom model ,things will be different ,lets say there is a Sequential layer inside another Sequential layer and if there is a CNN layer it will be unchecked.
 This is where the extractor.py module comes in. 
 
 ### Extractor class
 The Extractor class can find every CNN layer(except down-sample layers) including their weights in any resnet model and almost in any custom resnet and vgg model. Its not limited to CNN layers it can find Linear layers and if the name of the Down-sampling layer is mentioned, it 
-can find it too. It can also give the some useful information like the number of CNN, Linear and Sequential layers in a model.
+can find that too. It can also give some useful information like the number of CNN, Linear and Sequential layers in a model.
 
 ### How to use
-The model parameter takes in a model and the DS_layer_name parameter is optional. The DS_layer_name parameter is to find the donw-sampling layer normally in resnet layer the name will be
-'downsample' so it is kept as default.
+In the Extractor class the model parameter takes in a model and the DS_layer_name parameter is optional. The DS_layer_name parameter is to find the down-sampling layer normally in resnet layer the name will be 'downsample' so it is kept as default.
 
 ```
 extractor = Extractor(model = resnet, DS_layer_name = 'downsample')
@@ -60,7 +59,7 @@ You can get relevant details in a dictionary by calling ```extractor.info()```
 ```
 {'Down-sample layers name': 'downsample', 'Total CNN Layers': 49, 'Total Sequential Layers': 4, 'Total Downsampling Layers': 4, 'Total Linear Layers': 1, 'Total number of Bottleneck and Basicblock': 16, 'Total Execution time': '0.00137 sec'}
 ```
-#### Accessing the weights
+#### Accessing the weights and the layers
 ```
 extractor.CNN_layers -----> Gives all the CNN layers in a model
 extractor.Linear_layers --> Gives all the Linear layers in a model
