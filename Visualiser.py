@@ -12,8 +12,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Loading the model
 resnet = models.resnet50()
 
-
-extractor = Extractor(resnet)
+extractor = Extractor(list(resnet.children()))
 extractor.activate()
 
 
